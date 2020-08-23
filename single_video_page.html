@@ -20,7 +20,7 @@
 </head>
 <body>
 
-<div class="wrapper">
+<div id="app" class="wrapper">
 	
 	<header>
 		<div class="top_bar">
@@ -413,15 +413,15 @@
 								    preload="auto"
 								    width="640"
 								    height="264"
-								    poster="images/resources/poster-img.jpg"
-								    data-setup="{}"
+								    :poster="detail.cover"
+									data-setup="{}"
+									:src="detail.source"
 								  >
-								    <source src="demo_video.mp4" type="video/mp4" />
-								    <source src="demo_video.webm" type="video/webm" />
+
 								</video>
 							</div><!--vid-pr end-->
 							<div class="vid-info">
-								<h3>Kingdom Come: Deliverance Funny Moments and Fails Compilation</h3>
+								<h3>{{detail.title}}</h3>
 								<div class="info-pr">
 									<span>60,723,169 views</span>
 									<ul class="pr_links">
@@ -1011,8 +1011,46 @@
 <script src="js/jquery.min.js"></script>
 <script src="js/popper.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="js/video.js"></script>
+<!-- <script src="js/video.js"></script> -->
 <script src="js/script.js"></script>
+<script src="js/vue.js"></script>
 
+<script src="js/axios.min.js"></script>
+<script src="js/common.js"></script>
+
+<script>
+	var vue = new Vue({
+		el:"#app",
+		//router,
+		data: {
+			detail:""
+		},
+		created() {
+			console.log("created");
+			this.init();
+		},
+		mounted(){
+			console.log("mounted");
+        },
+        methods: {
+		init: function() {
+			
+
+			let id = getQueryString("id");
+			console.log(id);
+			axios.get("/api/Movie/detail?id="+ id)
+				.then(response => {
+					console.log(response.data)
+					var apiData = response.data.content;
+					this.$data.detail = apiData;
+				})
+				.catch((error) =>{
+					console.log(error);
+				});
+				console.log(this.movieSrc);
+			}
+  		}
+	});
+</script>
 </body>
 </html>
