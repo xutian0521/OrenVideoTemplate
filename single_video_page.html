@@ -405,7 +405,7 @@
 				<div class="col-lg-9">
 					<div class="mn-vid-sc single_video">
 						<div class="vid-1">
-							<div class="vid-pr">
+							<div class="vid-pr" v-for="item in detail.sources">
 								<video
 								    id="my-video"
 								    class="video-js"
@@ -415,10 +415,11 @@
 								    height="264"
 								    :poster="detail.cover"
 									data-setup="{}"
-									:src="detail.source"
+									:src="item"
 								  >
 
 								</video>
+								<div>11</div>
 							</div><!--vid-pr end-->
 							<div class="vid-info">
 								<h3>{{detail.title}}</h3>
@@ -1041,7 +1042,7 @@
 			axios.get("/api/Movie/detail?id="+ id)
 				.then(response => {
 					console.log(response.data)
-					this.detail = response.data.content;
+					this.detail = response.data;
 				})
 				.catch((error) =>{
 					console.log(error);
