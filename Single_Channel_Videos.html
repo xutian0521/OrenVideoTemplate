@@ -863,6 +863,7 @@
 												<a href="#" title="">
 													<img :src="item.cover" alt="">
 													<span class="vid-time">{{item.totalTime}}</span>
+													<span class="vid-resolution">{{item.disPlayResolution}}</span>
 													<span class="watch_later">
 														<i class="icon-watch_later_fill"></i>
 													</span>
@@ -871,7 +872,7 @@
 											<div class="video_info">
 												<h3><a :href="'single_video_page.html?id=' + item.id" title="">{{item.title}}</a></h3>
 												<h4><a href="#" title="">{{item.actress.fullName}}</a> <span class="verify_ic"><i class="icon-tick"></i></span></h4>
-												<span>{{item.viewCount}} views .<small class="posted_dt">{{item.date}}</small></span>
+												<span>{{item.viewCount}} views .<small class="posted_dt">{{item.postedDate}}</small></span>
 											</div>
 										</div><!--videoo end-->
 									</div>
