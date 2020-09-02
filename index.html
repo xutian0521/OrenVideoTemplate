@@ -426,7 +426,8 @@
 										<div class="vid_thumbainl">
 											<a :href="'single_video_page.html?id=' + item.id" title="">
 												<img :src="item.cover" alt="">
-												<span class="vid-time">10:21</span>
+												<span class="vid-time">{{item.totalTime}}</span>
+												<span class="vid-resolution">{{item.disPlayResolution}}</span>
 												<span class="watch_later">
 													<i class="icon-watch_later_fill"></i>
 												</span>

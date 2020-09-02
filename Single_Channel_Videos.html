@@ -18,7 +18,7 @@
 </head>
 <body>
 
-<div class="wrapper">
+<div id="app" class="wrapper">
 
 
 	<header>
@@ -857,21 +857,21 @@
 							<div class="clearfix"></div>
 							<div class="vidz_list">
 								<div class="row">
-									<div class="col-lg-3 col-md-3 col-sm-6 col-6 full_wdth">
+									<div class="col-lg-3 col-md-3 col-sm-6 col-6 full_wdth" v-for="item in actressMovies">
 										<div class="videoo">
 											<div class="vid_thumbainl">
 												<a href="#" title="">
-													<img src="images/resources/vide1.png" alt="">
-													<span class="vid-time">10:21</span>
+													<img :src="item.cover" alt="">
+													<span class="vid-time">{{item.totalTime}}</span>
 													<span class="watch_later">
 														<i class="icon-watch_later_fill"></i>
 													</span>
 												</a>	
 											</div><!--vid_thumbnail end-->
 											<div class="video_info">
-												<h3><a href="single_video_page.html" title="">Kingdom Come: Deliverance Funny Moments and Fails</a></h3>
-												<h4><a href="#" title="">newfox media</a> <span class="verify_ic"><i class="icon-tick"></i></span></h4>
-												<span>686K views .<small class="posted_dt">1 week ago</small></span>
+												<h3><a :href="'single_video_page.html?id=' + item.id" title="">{{item.title}}</a></h3>
+												<h4><a href="#" title="">{{item.actress.fullName}}</a> <span class="verify_ic"><i class="icon-tick"></i></span></h4>
+												<span>{{item.viewCount}} views .<small class="posted_dt">{{item.date}}</small></span>
 											</div>
 										</div><!--videoo end-->
 									</div>
@@ -2692,6 +2692,36 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/script.js"></script>
 
+<script src="js/vue.js"></script>
+<script src="js/axios.min.js"></script>
+<script src="js/common.js"></script>
+<script>
 
+	var vue = new Vue({
+		el:"#app",
+		data: {
+			actressMovies : []
+		},
+		created() {
+			console.log("create");
+			this.init();
+		},
+		mounted(){
+			console.log("mounted");
+        },
+        methods:{
+            init:function(){
+				
+				let actressName = getQueryString("actressName");
+                axios.get("api/Movie/List?actressName=" + actressName).then(response => {
+					 console.log(response);
+					 this.actressMovies = response.data;
+				});
+
+            }
+
+        }
+	});
+</script>
 </body>
 </html>

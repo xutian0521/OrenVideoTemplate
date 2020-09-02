@@ -18,7 +18,7 @@
 </head>
 <body>
 
-<div class="wrapper">
+<div id="app" class="wrapper">
 
 
 
@@ -406,19 +406,19 @@
 					<a href="#" title="">View more</a>
 					<div class="clearfix"></div>
 					<div class="row">
-						<div class="col-lg-3 col-md-3 col-sm-6 col-12">
+						<div class="col-lg-3 col-md-3 col-sm-6 col-12" v-for="item in actresses">
 							<div class="videoo">
 								<div class="vid_thumbainl">
-									<a href="Single_Channel_Home.html" title="">
-										<img src="images/resources/cl1.jpg" alt="">
+									<a :href="'Single_Channel_Videos.html?actressName=' + item.fullName" title="">
+										<img :src="item.background" alt="">
 									</a>	
 								</div><!--vid_thumbnail end-->
 								<div class="video_info">
 									<div class="vid_thumb">
-										<img src="images/resources/vid-thumb1.png" alt="">
+										<img :src="item.cover" alt="">
 									</div>
-									<h4><a href="Single_Channel_Home.html" title="">Newfox Media</a> <span class="verify_ic"><i class="icon-tick"></i></span></h4>
-									<span>13M Subscribers . 72 Videos 374M views</span>
+									<h4><a :href="'Single_Channel_Videos.html?actressName=' + item.fullName" title="">{{item.fullName}}</a> <span class="verify_ic"><i class="icon-tick"></i></span></h4>
+									<span>13M Subscribers . {{item.movieCount}} Videos {{item.totalViewCount}} views</span>
 								</div>
 							</div>
 						</div>
@@ -840,7 +840,37 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/script.js"></script>
 
+<script src="js/vue.js"></script>
+<script src="js/axios.min.js"></script>
+<script src="js/common.js"></script>
+<script>
 
+	var vue = new Vue({
+		el:"#app",
+		//router,
+		data: {
+			actresses : []
+		},
+		created() {
+			console.log("create");
+			this.init();
+		},
+		mounted(){
+			console.log("mounted");
+            
+        },
+        methods:{
+            init:function(){
+                axios.get("api/Movie/Actresses").then(response => {
+					 console.log(response);
+					 this.actresses = response.data;
+				});
+
+            }
+
+        }
+	});
+</script>
 
 </body>
 </html>
