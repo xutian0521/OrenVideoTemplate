@@ -1,5 +1,5 @@
 
-axios.defaults.baseURL = 'http://localhost:88/';
+axios.defaults.baseURL = 'http://localhost/';
 // const routes = []
 // const router = new VueRouter({
 //     routes // (缩写) 相当于 routes: routes
