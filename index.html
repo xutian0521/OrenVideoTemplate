@@ -434,9 +434,9 @@
 											</a>	
 										</div><!--vid_thumbnail end-->
 										<div class="video_info">
-											<h3 style="padding-bottom: 10px;height:22px;line-height:16px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;"><a href="single_video_page.html"  title="">{{item.title}}</a></h3>
+											<h3 style="padding-bottom: 10px;height:22px;line-height:16px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;"><a :href="'single_video_page.html?id=' + item.id" title="">{{item.title}}</a></h3>
 											<h4>
-												<a href="Single_Channel_Home.html" title="">{{item.fanHao}}</a> <span class="verify_ic"><i class="icon-tick"></i></span>
+												<a :href="'single_video_page.html?id=' + item.id" title="">{{item.fanHao}}</a> <span class="verify_ic"><i class="icon-tick"></i></span>
 											</h4>
 											<span>{{item.viewCount}} views .<small class="posted_dt">{{item.postedDate}}</small></span>
 										</div>
