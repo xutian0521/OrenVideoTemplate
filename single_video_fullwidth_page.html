@@ -20,7 +20,7 @@
 </head>
 <body>
 
-<div class="wrapper">
+<div id="app"  class="wrapper">
 	
 	<header>
 		<div class="top_bar">
@@ -400,16 +400,17 @@
 
 	<section class="mn-sec full_wdth_single_video">
 		<div class="container">
-			<div class="vid-pr">
+			<div class="vid-pr" style="height: 680px;" v-for="item in detail.sources">
 				<video
 				    id="my-video"
 				    class="video-js"
 				    controls
 				    preload="auto"
 				    width="640"
-				    height="264"
-				    poster="images/resources/poster-img.jpg"
-				    data-setup="{}"
+				    height="442"
+					:poster="detail.cover"
+					data-setup="{}"
+					:src="item"
 				  >
 				    <source src="demo_video.mp4" type="video/mp4" />
 				    <source src="demo_video.webm" type="video/webm" />
@@ -420,9 +421,9 @@
 					<div class="mn-vid-sc single_video">
 						<div class="vid-1">
 							<div class="vid-info">
-								<h3>Kingdom Come: Deliverance Funny Moments and Fails Compilation</h3>
+								<h3>{{detail.title}}</h3>
 								<div class="info-pr">
-									<span>60,723,169 views</span>
+									<span>{{detail.viewCount}} views | {{detail.date}}</span>
 									<ul class="pr_links">
 										<li>
 											<button data-toggle="tooltip" data-placement="top" title="I like this">
@@ -994,8 +995,44 @@
 <script src="js/jquery.min.js"></script>
 <script src="js/popper.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="js/video.js"></script>
+<!-- <script src="js/video.js"></script> -->
 <script src="js/script.js"></script>
 
+<!-- add -->
+<script src="js/vue.js"></script>
+<script src="js/axios.min.js"></script>
+<script src="js/common.js"></script>
+<script>
+	var vue = new Vue({
+		el:"#app",
+		//router,
+		data: {
+			detail:""
+		},
+		created() {
+			console.log("created");
+			this.init();
+		},
+		mounted(){
+			console.log("mounted");
+        },
+        methods: {
+		init: function() {
+			
+
+			let id = getQueryString("id");
+			console.log(id);
+			axios.get("/api/Movie/detail?id="+ id)
+				.then(response => {
+					console.log(response.data)
+					this.detail = response.data;
+				})
+				.catch((error) =>{
+					console.log(error);
+				});
+			}
+  		}
+	});
+</script>
 </body>
 </html>

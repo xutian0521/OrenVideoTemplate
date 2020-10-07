@@ -1,12 +1,9 @@
-(function($) {
-  
-  "use strict";
-
+$(function () {
 
 
     //  ==================== SCROLLING FUNCTION ====================
 
-    $(window).on("scroll", function() {
+    $(window).on("scroll", function () {
         var scroll = $(window).scrollTop();
         if (scroll > 30) {
             $(".top_bar").addClass("scroll animated slideInDown");
@@ -23,38 +20,33 @@
         "top": header_height
     });
 
-    $(".menu").on("click", function(){
-      $(".side_menu").toggleClass("active");
-      return false;
+    $(".menu").click(function () {
+        console.log("menuclick");
+        $(".side_menu").toggleClass("active");
+        return false;
     });
 
-    $("html").on("click", function() {
+    $("html").on("click", function () {
         $(".side_menu").removeClass("active");
     });
-    $(".menu, .side_menu").on("click", function(e){
+    $(".menu, .side_menu").on("click", function (e) {
         e.stopPropagation();
     });
 
-    $(".user-log").on("click", function() {
+    $(".user-log").on("click", function () {
         $(".account-menu").slideToggle();
     });
-    $("html").on("click", function() {
+    $("html").on("click", function () {
         $(".account-menu").slideUp();
     });
-    $(".user-log, .account-menu").on("click", function(e) {
+    $(".user-log, .account-menu").on("click", function (e) {
         e.stopPropagation();
     });
-
-
     //  ==================== SCROLLING FUNCTION ====================
-    
+
     $(function () {
-      $('[data-toggle="tooltip"]').tooltip()
+        $('[data-toggle="tooltip"]').tooltip()
     })
-
-
-
-
-})(window.jQuery);
+});
 
 
