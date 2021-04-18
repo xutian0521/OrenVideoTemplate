@@ -1,5 +1,5 @@
 ﻿
-axios.defaults.baseURL = 'http://192.168.31.206';
+axios.defaults.baseURL = 'http://192.168.28.206';
 // const routes = []
 // const router = new VueRouter({
 //     routes // (缩写) 相当于 routes: routes
